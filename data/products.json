@@ -1,110 +1,76 @@
 [
   {
-    "name": "Gold & Blue",
-    "category": "Teams",
-    "subcategory": "International",
-    "details": "",
-    "description": "Example listing. Yellow shirts, blue shorts, white socks.",
-    "price": "65.00",
-    "available": 1,
-    "photo": "",
-    "more_photos": [],
-    "stripe_link": ""
+    "name": "Lionel Messi - Argentina Final Game Edition",
+    "category": "Single Figures",
+    "subcategory": "World Cup Heroes",
+    "description": "Special edition Lionel Messi figure, featuring gold decals to replicate the kit he wore in his final game for Argentina in October 2026",
+    "price": "12",
+    "available": 2,
+    "photo": "images/messi-figure-preview.jpg",
+    "stripe_link": "https://buy.stripe.com/9B6aEQcTlfBn2Ysfm79Ve01"
   },
   {
     "name": "Sky & White Stripes",
     "category": "Teams",
     "subcategory": "International",
-    "details": "",
     "description": "Example listing. Hand-ruled stripes and black shorts.",
     "price": "65.00",
-    "available": 1,
-    "photo": "",
-    "more_photos": [],
-    "stripe_link": ""
+    "available": 1
   },
   {
     "name": "Claret & Sky",
     "category": "Teams",
     "subcategory": "English",
-    "details": "",
     "description": "Example listing. Claret shirts with sky-blue trim.",
     "price": "65.00",
-    "available": 1,
-    "photo": "",
-    "more_photos": [],
-    "stripe_link": ""
+    "available": 1
   },
   {
     "name": "Green & White Hoops",
     "category": "Teams",
     "subcategory": "European",
-    "details": "",
     "description": "Example listing. Six hoops per shirt, white shorts.",
     "price": "65.00",
-    "available": 0,
-    "photo": "",
-    "more_photos": [],
-    "stripe_link": ""
+    "available": 0
   },
   {
     "name": "Black & White Stripes",
     "category": "Teams",
     "subcategory": "Rest of World",
-    "details": "",
     "description": "Example listing. Classic stripes, black shorts and socks.",
     "price": "65.00",
-    "available": 1,
-    "photo": "",
-    "more_photos": [],
-    "stripe_link": ""
+    "available": 1
   },
   {
     "name": "Number 10, Gold",
     "category": "Single Figures",
     "subcategory": "World Cup Heroes",
-    "details": "",
     "description": "Example listing. Playmaker with hand-painted number.",
     "price": "9.50",
-    "available": 6,
-    "photo": "",
-    "more_photos": [],
-    "stripe_link": ""
+    "available": 6
   },
   {
     "name": "Orange Maestro",
     "category": "Single Figures",
     "subcategory": "European Legends",
-    "details": "",
     "description": "Example listing. All-orange kit.",
     "price": "9.50",
-    "available": 4,
-    "photo": "",
-    "more_photos": [],
-    "stripe_link": ""
+    "available": 4
   },
   {
     "name": "Cult Hero Keeper",
     "category": "Single Figures",
     "subcategory": "Fan Favourites",
-    "details": "",
     "description": "Example listing. Green roll-neck keeper.",
     "price": "9.50",
-    "available": 3,
-    "photo": "",
-    "more_photos": [],
-    "stripe_link": ""
+    "available": 3
   },
   {
     "name": "The Flick",
     "category": "Posters",
-    "subcategory": "",
     "details": "A3 print",
     "description": "Example listing. Close-up of a figure lining up a shot.",
     "price": "10.00",
-    "available": 10,
-    "photo": "",
-    "more_photos": [],
-    "stripe_link": ""
+    "available": 10
   }
 ]
