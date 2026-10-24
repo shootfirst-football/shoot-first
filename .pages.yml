@@ -28,20 +28,26 @@ content:
         options:
           values: [International, English, European, Rest of World, World Cup Heroes, European Legends, Fan Favourites]
       - name: details
-        label: Short details line (e.g. Heavyweight · 10 + keeper)
+        label: Details line for posters, e.g. A3 print (teams and figures fill this in automatically)
         type: string
       - name: description
         label: Description
         type: text
       - name: price
-        label: Price in £ (numbers only, e.g. 85)
+        label: Price in £ (numbers only, e.g. 65.00)
         type: string
       - name: available
         label: Number available (teams are 1, or 0 once sold)
         type: number
       - name: photo
-        label: Photo
+        label: Main photo
         type: image
+      - name: more_photos
+        label: More photos (the first one shows when the mouse hovers over the listing)
+        type: image
+        options:
+          multiple:
+            max: 12
       - name: stripe_link
         label: Stripe Payment Link (paste from Stripe)
         type: string
