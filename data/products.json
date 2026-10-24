@@ -1,0 +1,101 @@
+[
+  {
+    "name": "Gold & Blue",
+    "category": "Teams",
+    "subcategory": "International",
+    "details": "Heavyweight · 10 + keeper",
+    "description": "Example listing. Yellow shirts, blue shorts, white socks.",
+    "price": "",
+    "available": 1,
+    "photo": "",
+    "stripe_link": ""
+  },
+  {
+    "name": "Sky & White Stripes",
+    "category": "Teams",
+    "subcategory": "International",
+    "details": "Heavyweight · 10 + keeper",
+    "description": "Example listing. Hand-ruled stripes and black shorts.",
+    "price": "",
+    "available": 1,
+    "photo": "",
+    "stripe_link": ""
+  },
+  {
+    "name": "Claret & Sky",
+    "category": "Teams",
+    "subcategory": "English",
+    "details": "Heavyweight · 10 + keeper",
+    "description": "Example listing. Claret shirts with sky-blue trim.",
+    "price": "",
+    "available": 1,
+    "photo": "",
+    "stripe_link": ""
+  },
+  {
+    "name": "Green & White Hoops",
+    "category": "Teams",
+    "subcategory": "European",
+    "details": "Lightweight · 10 + keeper",
+    "description": "Example listing. Six hoops per shirt, white shorts.",
+    "price": "",
+    "available": 0,
+    "photo": "",
+    "stripe_link": ""
+  },
+  {
+    "name": "Black & White Stripes",
+    "category": "Teams",
+    "subcategory": "Rest of World",
+    "details": "Heavyweight · 10 + keeper",
+    "description": "Example listing. Classic stripes, black shorts and socks.",
+    "price": "",
+    "available": 1,
+    "photo": "",
+    "stripe_link": ""
+  },
+  {
+    "name": "Number 10, Gold",
+    "category": "Single Figures",
+    "subcategory": "World Cup Heroes",
+    "details": "Heavyweight · single figure",
+    "description": "Example listing. Playmaker with hand-painted number.",
+    "price": "",
+    "available": 6,
+    "photo": "",
+    "stripe_link": ""
+  },
+  {
+    "name": "Orange Maestro",
+    "category": "Single Figures",
+    "subcategory": "European Legends",
+    "details": "Heavyweight · single figure",
+    "description": "Example listing. All-orange kit.",
+    "price": "",
+    "available": 4,
+    "photo": "",
+    "stripe_link": ""
+  },
+  {
+    "name": "Cult Hero Keeper",
+    "category": "Single Figures",
+    "subcategory": "Fan Favourites",
+    "details": "Keeper on rod",
+    "description": "Example listing. Green roll-neck keeper.",
+    "price": "",
+    "available": 3,
+    "photo": "",
+    "stripe_link": ""
+  },
+  {
+    "name": "The Flick",
+    "category": "Posters",
+    "subcategory": "",
+    "details": "A3 print",
+    "description": "Example listing. Close-up of a figure lining up a shot.",
+    "price": "",
+    "available": 10,
+    "photo": "",
+    "stripe_link": ""
+  }
+]
