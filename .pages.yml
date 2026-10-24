@@ -1,0 +1,78 @@
+# Pages CMS settings for the Shoot First website.
+# This file tells the editor which forms to show. You don't need to change it.
+
+media:
+  input: images
+  output: images
+
+content:
+  - name: products
+    label: Shop products
+    type: file
+    path: data/products.json
+    format: json
+    list: true
+    fields:
+      - name: name
+        label: Product name
+        type: string
+        required: true
+      - name: category
+        label: Category
+        type: select
+        options:
+          values: [Teams, Single Figures, Posters]
+      - name: subcategory
+        label: Subcategory (leave empty for posters)
+        type: select
+        options:
+          values: [International, English, European, Rest of World, World Cup Heroes, European Legends, Fan Favourites]
+      - name: details
+        label: Short details line (e.g. Heavyweight · 10 + keeper)
+        type: string
+      - name: description
+        label: Description
+        type: text
+      - name: price
+        label: Price in £ (numbers only, e.g. 85)
+        type: string
+      - name: available
+        label: Number available (teams are 1, or 0 once sold)
+        type: number
+      - name: photo
+        label: Photo
+        type: image
+      - name: stripe_link
+        label: Stripe Payment Link (paste from Stripe)
+        type: string
+
+  - name: gallery
+    label: Gallery
+    type: file
+    path: data/gallery.json
+    format: json
+    list: true
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: description
+        label: Description
+        type: string
+      - name: photo
+        label: Photo
+        type: image
+
+  - name: settings
+    label: Site settings
+    type: file
+    path: data/settings.json
+    format: json
+    fields:
+      - name: email
+        label: Contact email
+        type: string
+      - name: intro
+        label: Intro text under the logo
+        type: text
