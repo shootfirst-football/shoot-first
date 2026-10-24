@@ -114,6 +114,49 @@ section.block{padding-block:84px}
 .tray.photo-tray{padding:0;aspect-ratio:16/10;max-width:100%}
 .tray.photo-tray img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
 .team:hover .tray.photo-tray img{transform:scale(1.04)}
+/* hover photo swap */
+.pic{cursor:zoom-in}
+.pic .photo.alt{opacity:0;transition:opacity .4s,transform .5s}
+.item:hover .pic .photo.alt,.pic:focus-visible .photo.alt{opacity:1}
+.pic .count{position:absolute;right:12px;bottom:12px;z-index:1;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:rgba(20,24,16,.72);color:#fff;padding:4px 8px;border-radius:4px;backdrop-filter:blur(4px)}
+/* listing pop-up */
+html.lb-open{overflow:hidden}
+dialog.lb{width:min(1000px,calc(100% - 32px));max-height:calc(100% - 32px);padding:0;border:0;border-radius:20px;background:var(--card);color:var(--ink);overflow:auto;box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+dialog.lb::backdrop{background:rgba(14,18,8,.45);-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2)}
+.lb-grid{display:grid;grid-template-columns:1.25fr 1fr}
+.lb-media{background:var(--lime-wash);padding:20px;display:grid;gap:12px;min-width:0}
+.lb-stage{position:relative;border-radius:12px;overflow:hidden;background:var(--card)}
+.lb-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;aspect-ratio:1/1;max-width:100%}
+.lb-track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center}
+.slide img{width:100%;height:100%;object-fit:contain}
+.slide.drawn{align-items:flex-end;gap:4px;padding-top:30px;background:radial-gradient(circle at 50% 115%,var(--lime-pale),transparent 65%)}
+.slide.drawn svg{height:80%;width:auto}
+.slide.drawn .poster{height:82%;align-self:center}
+.lb-nav{position:absolute;top:50%;translate:0 -50%;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.88);color:#1f2418;font-size:28px;line-height:1;cursor:pointer;box-shadow:0 6px 16px -6px rgba(0,0,0,.4);transition:transform .2s}
+.lb-nav:hover{transform:scale(1.08)}
+.lb-nav.prev{left:12px}.lb-nav.next{right:12px}
+.lb-counter{position:absolute;bottom:12px;left:50%;translate:-50% 0;font-family:var(--f-mono);font-size:12px;background:rgba(20,24,16,.72);color:#fff;padding:4px 10px;border-radius:999px}
+.lb-counter:empty{display:none}
+.lb-thumbs{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
+.lb-thumbs:empty{display:none}
+.lb-thumbs button{flex:0 0 64px;height:64px;padding:0;border:2px solid transparent;border-radius:8px;overflow:hidden;cursor:pointer;background:var(--card);opacity:.6;transition:opacity .2s,border-color .2s}
+.lb-thumbs button[aria-current]{opacity:1;border-color:var(--lime)}
+.lb-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.lb-info{padding:36px 28px 28px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.lb-info .set{align-self:flex-start;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--lime);color:#fff;padding:4px 8px;border-radius:4px}
+.lb-info h3{font-size:clamp(28px,4vw,40px)}
+.lb-info .meta{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.lb-info .desc{color:var(--muted)}
+.lb-info .foot{display:flex;justify-content:space-between;align-items:center;gap:8px;padding-top:8px;border-top:1px solid var(--line);margin-top:6px}
+.lb-info .price{font-size:22px}
+.lb-info .buy,.lb-info .enq{align-self:stretch;justify-content:center;text-align:center;padding-block:14px}
+.lb-close{position:absolute;top:12px;right:12px;z-index:2;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:24px;line-height:1;cursor:pointer}
+@media (max-width:760px){.lb-grid{grid-template-columns:1fr}.lb-media{padding:12px}.lb-info{padding:20px}}
+@media (prefers-reduced-motion:no-preference){
+  dialog.lb[open]{animation:lbIn .28s cubic-bezier(.2,.8,.2,1)}
+  @keyframes lbIn{from{opacity:0;transform:translateY(16px) scale(.97)}}
+}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
 .item{--rx:0deg;--ry:0deg;position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;
   transform:perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));transition:transform .25s ease,box-shadow .25s ease}
@@ -379,6 +422,23 @@ footer img{width:170px;height:auto}
   </section>
 </main>
 
+<dialog class="lb" id="lb" aria-labelledby="lbTitle">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Close">&times;</button>
+  <div class="lb-grid">
+    <div class="lb-media">
+      <div class="lb-stage">
+        <div class="lb-track" id="lbTrack"></div>
+        <button class="lb-nav prev" id="lbPrev" type="button" aria-label="Previous photo">&#8249;</button>
+        <button class="lb-nav next" id="lbNext" type="button" aria-label="Next photo">&#8250;</button>
+        <span class="lb-counter" id="lbCounter"></span>
+      </div>
+      <div class="lb-thumbs" id="lbThumbs"></div>
+    </div>
+    <div class="lb-info" id="lbInfo"></div>
+  </div>
+</dialog>
+
+
 <footer id="contact">
   <div class="wrap">
     <div>
@@ -430,7 +490,9 @@ const KITS=[
 function kitFor(name){let h=0;for(const c of String(name||''))h=(h*31+c.charCodeAt(0))>>>0;return KITS[h%KITS.length];}
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const img=p=>{if(!p)return '';p=String(p);return /^https?:/.test(p)?p:p.replace(/^\/+/,'');};
-const money=p=>(p===''||p==null||isNaN(Number(p)))?'Price on request':'£'+Number(p).toFixed(Number(p)%1?2:0);
+const money=p=>{const v=String(p??'').replace(/[£,\s]/g,'');return (v===''||isNaN(Number(v)))?'Price on request':'£'+Number(v).toFixed(2);};
+const photosOf=i=>[i.photo,...(Array.isArray(i.more_photos)?i.more_photos:(i.more_photos?[i.more_photos]:[]))].filter(Boolean).map(img);
+const detailsFor=i=>i.category==='Teams'?'X11 OUTFIELD FIGURES':i.category==='Single Figures'?'X1 OUTFIELD FIGURE':(i.details||'');
 
 document.getElementById('heroLineup').innerHTML=
   F({shirt:'#f4f4f4',shorts:'#1c2b5a',socks:'#f4f4f4',stripe:'#1c2b5a'})+
@@ -448,11 +510,17 @@ async function load(path,fallback){
   try{const r=await fetch(path,{cache:'no-cache'});if(!r.ok)throw 0;return await r.json();}catch(_){return fallback;}
 }
 
-function pic(i){
-  if(i.photo)return `<img class="photo" src="${esc(img(i.photo))}" alt="${esc(i.name)}" loading="lazy">`;
+function drawn(i){
   const k=kitFor(i.name);
   if(i.category==='Posters')return `<div class="poster"><div class="art">${F(k)}</div><i>${esc(i.name)}</i></div>`;
   return i.category==='Teams'?F(k)+F(k):F(k);
+}
+function pic(i){
+  const ph=photosOf(i);
+  if(!ph.length)return drawn(i);
+  return `<img class="photo" src="${esc(ph[0])}" alt="${esc(i.name)}" loading="lazy">`+
+    (ph[1]?`<img class="photo alt" src="${esc(ph[1])}" alt="" loading="lazy">`:'')+
+    (ph.length>1?`<span class="count">${ph.length} photos</span>`:'');
 }
 function stockLabel(i,n){
   if(i.category==='Teams')return n>0?`<span class="badge one">One-off</span>`:`<span class="badge sold">Sold</span>`;
@@ -464,14 +532,16 @@ function action(i,n){
   return i.category==='Teams'?`<button class="enq" type="button" data-name="${esc(i.name)}">Commission one like it</button>`:'';
 }
 
+let SHOP=[];
 function renderShop(items){
-  items=(items||[]).filter(i=>i&&i.name&&i.hidden!==true);
-  grid.innerHTML=items.map(i=>{
+  SHOP=(items||[]).filter(i=>i&&i.name&&i.hidden!==true);
+  grid.innerHTML=SHOP.map((i,ix)=>{
     const n=Number(i.available)||0;
     const sub=i.category==='Posters'?'':(i.subcategory||'');
+    const det=detailsFor(i);
     return `<article class="item reveal${n>0?'':' sold'}" data-cat="${esc(i.category)}" data-sub="${esc(sub)}">
-  <div class="pic${i.photo?' has-photo':''}"><span class="set">${esc(sub||i.category)}</span>${pic(i)}</div>
-  <div class="body">${i.details?`<span class="meta">${esc(i.details)}</span>`:''}<h3>${esc(i.name)}</h3>${i.description?`<p class="desc">${esc(i.description)}</p>`:''}
+  <div class="pic${photosOf(i).length?' has-photo':''}" role="button" tabindex="0" data-i="${ix}" aria-label="View ${esc(i.name)}"><span class="set">${esc(sub||i.category)}</span>${pic(i)}</div>
+  <div class="body">${det?`<span class="meta">${esc(det)}</span>`:''}<h3>${esc(i.name)}</h3>${i.description?`<p class="desc">${esc(i.description)}</p>`:''}
   <div class="foot"><span class="price">${money(i.price)}</span>${stockLabel(i,n)}</div>
   ${i.category!=='Teams'&&n>0?`<span class="stock">${n} available</span>`:''}
   ${action(i,n)}</div></article>`;}).join('');
@@ -483,6 +553,50 @@ function renderShop(items){
   });
   applyFilter();
 }
+
+// listing pop-up
+const lb=document.getElementById('lb');
+const lbTrack=document.getElementById('lbTrack');
+let lbCount=0;
+function openListing(ix){
+  const i=SHOP[ix];if(!i)return;
+  const n=Number(i.available)||0;
+  const sub=i.category==='Posters'?'':(i.subcategory||'');
+  const ph=photosOf(i);
+  lbCount=Math.max(ph.length,1);
+  lbTrack.innerHTML=ph.length?ph.map((p,k)=>`<div class="slide"><img src="${esc(p)}" alt="${esc(i.name)}, photo ${k+1} of ${ph.length}"></div>`).join('')
+    :`<div class="slide drawn">${drawn(i)}</div>`;
+  document.getElementById('lbThumbs').innerHTML=ph.length>1?ph.map((p,k)=>`<button type="button" data-k="${k}" aria-label="Photo ${k+1}"${k===0?' aria-current="true"':''}><img src="${esc(p)}" alt=""></button>`).join(''):'';
+  document.getElementById('lbPrev').hidden=document.getElementById('lbNext').hidden=ph.length<2;
+  document.getElementById('lbCounter').textContent=ph.length>1?`1 / ${ph.length}`:'';
+  const det=detailsFor(i);
+  document.getElementById('lbInfo').innerHTML=`<span class="set">${esc(sub||i.category)}</span>
+    ${det?`<span class="meta">${esc(det)}</span>`:''}<h3 id="lbTitle">${esc(i.name)}</h3>
+    ${i.description?`<p class="desc">${esc(i.description)}</p>`:''}
+    <div class="foot"><span class="price">${money(i.price)}</span>${stockLabel(i,n)}</div>
+    ${i.category!=='Teams'&&n>0?`<span class="stock">${n} available</span>`:''}
+    ${action(i,n)}`;
+  lbTrack.scrollLeft=0;
+  if(typeof lb.showModal==='function')lb.showModal();else lb.setAttribute('open','');
+  document.documentElement.classList.add('lb-open');
+}
+function closeListing(){if(lb.open)lb.close();}
+lb.addEventListener('close',()=>document.documentElement.classList.remove('lb-open'));
+function goSlide(k){k=Math.max(0,Math.min(lbCount-1,k));lbTrack.scrollTo({left:k*lbTrack.clientWidth,behavior:'smooth'});}
+const curSlide=()=>Math.round(lbTrack.scrollLeft/Math.max(1,lbTrack.clientWidth));
+document.getElementById('lbPrev').addEventListener('click',()=>goSlide(curSlide()-1));
+document.getElementById('lbNext').addEventListener('click',()=>goSlide(curSlide()+1));
+document.getElementById('lbClose').addEventListener('click',closeListing);
+document.getElementById('lbThumbs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)goSlide(+b.dataset.k);});
+let lbRaf=0;
+lbTrack.addEventListener('scroll',()=>{cancelAnimationFrame(lbRaf);lbRaf=requestAnimationFrame(()=>{
+  const k=curSlide();
+  if(lbCount>1)document.getElementById('lbCounter').textContent=`${k+1} / ${lbCount}`;
+  document.querySelectorAll('#lbThumbs button').forEach((b,j)=>b.toggleAttribute('aria-current',j===k));
+});});
+lb.addEventListener('click',e=>{if(e.target===lb)closeListing();});
+lb.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();goSlide(curSlide()+1);}if(e.key==='ArrowLeft'){e.preventDefault();goSlide(curSlide()-1);}});
+grid.addEventListener('keydown',e=>{const p=e.target.closest('.pic');if(p&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openListing(+p.dataset.i);}});
 
 let curCat='all',curSub='all';
 const subEl=document.getElementById('subFilters');
@@ -512,12 +626,19 @@ subEl.addEventListener('click',e=>{
   subEl.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===c));
   applyFilter();
 });
-grid.addEventListener('click',e=>{
-  const b=e.target.closest('.enq');if(!b)return;
-  document.getElementById('c-type').value=b.textContent.startsWith('Commission')?'Full team (10 + keeper)':'Something from the shop';
-  document.getElementById('c-notes').value=b.textContent.startsWith('Commission')?`I'd like a team like "${b.dataset.name}".`:`I'm interested in "${b.dataset.name}" from the shop.`;
+function enquire(name,commission){
+  document.getElementById('c-type').value=commission?'Full team (10 + keeper)':'Something from the shop';
+  document.getElementById('c-notes').value=commission?`I'd like a team like "${name}".`:`I'm interested in "${name}" from the shop.`;
   document.getElementById('commission').scrollIntoView({behavior:'smooth'});
   setTimeout(()=>document.getElementById('c-name').focus({preventScroll:true}),500);
+}
+grid.addEventListener('click',e=>{
+  const p=e.target.closest('.pic');if(p){openListing(+p.dataset.i);return;}
+  const b=e.target.closest('.enq');if(b)enquire(b.dataset.name,b.textContent.startsWith('Commission'));
+});
+document.getElementById('lbInfo').addEventListener('click',e=>{
+  const b=e.target.closest('.enq');if(!b)return;
+  closeListing();enquire(b.dataset.name,b.textContent.startsWith('Commission'));
 });
 
 function renderGallery(items){
