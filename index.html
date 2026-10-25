@@ -170,7 +170,7 @@ dialog.lb::backdrop{background:rgba(14,18,8,.45);-webkit-backdrop-filter:blur(10
 .item:hover .pic svg{transform:translateY(-6px) scale(1.04)}
 .item .pic::after{content:"";position:absolute;inset:0;background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.35),transparent 60%);opacity:0;transition:opacity .25s;pointer-events:none}
 .item:hover .pic::after{opacity:1}
-.item .set{position:absolute;top:12px;left:12px;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--lime);color:#fff;padding:4px 8px;border-radius:4px;z-index:1}
+.item .set{position:absolute;left:12px;bottom:12px;transform:rotate(-90deg);transform-origin:top left;translate:0 100%;white-space:nowrap;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--lime);color:#fff;padding:4px 8px;border-radius:4px;z-index:1}
 .item .body{padding:18px;display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
 .item h3{font-size:24px}
 .item .meta{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
@@ -522,8 +522,7 @@ function pic(i){
   const ph=photosOf(i);
   if(!ph.length)return drawn(i);
   return `<img class="photo" src="${esc(ph[0])}" alt="${esc(i.name)}" loading="lazy">`+
-    (ph[1]?`<img class="photo alt" src="${esc(ph[1])}" alt="" loading="lazy">`:'')+
-    (ph.length>1?`<span class="count">${ph.length} photos</span>`:'');
+    (ph[1]?`<img class="photo alt" src="${esc(ph[1])}" alt="" loading="lazy">`:'');
 }
 function stockLabel(i,n){
   if(i.category==='Teams')return n>0?`<span class="badge one">One-off</span>`:`<span class="badge sold">Sold</span>`;
