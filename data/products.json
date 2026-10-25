@@ -75,5 +75,13 @@
     "description": "Example listing. Close-up of a figure lining up a shot.",
     "price": "10.00",
     "available": 10
+  },
+  {
+    "name": "Gianluca Vialli - Juventus",
+    "subcategory": "European",
+    "description": "Gianluca Vialli",
+    "price": "9.50",
+    "available": 2,
+    "photo": "images/vialli-juventus.jpg"
   }
 ]
